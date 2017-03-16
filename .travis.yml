@@ -10,7 +10,7 @@ services:
 before_script:
   - |
     mkdir ubuntu-16.04
-    cat > ubuntu-16.04/Dockerfile
+    cat <<'' > ubuntu-16.04/Dockerfile
     FROM ubuntu:16.04
     RUN apt-get update
     RUN apt-get install -y git build-essential cmake libmbedtls-dev \
@@ -23,7 +23,7 @@ before_script:
     CMD cd Anjay && ./devconfig && make -j && make check
   - |
     mkdir centos7
-    cat > centos7/Dockerfile
+    cat <<'' > centos7/Dockerfile
     FROM centos:7
     # required for mbedtls-devel and python3.5
     RUN yum install -y https://centos7.iuscommunity.org/ius-release.rpm
