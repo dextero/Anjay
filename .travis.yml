@@ -1,3 +1,5 @@
+language: c
+
 sudo: required
 
 dist: trusty
@@ -10,6 +12,8 @@ before_script:
     mkdir ubuntu-16.04
     cat <<EOF > ubuntu-16.04/Dockerfile
     FROM ubuntu:16.04
+    RUN echo "CC = $CC"
+    RUN echo "CXX = $CXX"
     RUN apt-get update
     RUN apt-get install -y git build-essential cmake libmbedtls-dev \
         libssl-dev python3 libboost-python-dev libpython3-dev wget \
