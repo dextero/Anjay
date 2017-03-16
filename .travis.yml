@@ -20,7 +20,7 @@ before_script:
     RUN sed -i -e "s/-Wdate-time/ /g" \
         /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu/Makefile \
         /usr/lib/python3.5/plat-x86_64-linux-gnu/_sysconfigdata_m.py
-    CMD cd Anjay && ./devconfig -DCMAKE_C_COMPILER=$ANJAY_CC -DCMAKE_CXX_COMPILER=$ANJAY_CXX && make -j && make check
+    CMD cd Anjay && ./devconfig && make -j && make check
   - |
     mkdir centos7
     cat <<EOF > centos7/Dockerfile
@@ -40,7 +40,7 @@ before_script:
 
 script:
   - docker build -t "$DOCKER_IMAGE" "$DOCKER_IMAGE"
-  - docker run -e CC=$CC -e CXX=$CXX "$DOCKER_IMAGE"
+  - docker run -e CC=$ANJAY_CC -e CXX=$ANJAY_CXX "$DOCKER_IMAGE"
 
 env:
   - ANJAY_CC=gcc-4.7
