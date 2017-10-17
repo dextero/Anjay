@@ -14,6 +14,7 @@
 
 case "$TRAVIS_OS_NAME" in
 osx)
+    brew update
     brew install cmake mbedtls python3
     python3 -m pip install cryptography sphinx sphinx_rtd_theme
 
